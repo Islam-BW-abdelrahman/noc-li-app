@@ -120,17 +120,17 @@ function Navigation({ mobile = false, close }: { mobile?: boolean; close?: () =>
           </label>
         )}
         {navGroups.map((group) => (
-          <div key={group.label || "top"} className="mb-4">
-            {group.label && <p className="mb-2 px-2 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">{group.label}</p>}
-            <div className="space-y-1">
+          <div key={group.label || "top"} className="mb-5">
+            {group.label && <p className="mb-3 px-2 text-[10px] font-medium uppercase tracking-[0.14em] text-muted-foreground">{group.label}</p>}
+            <div>
               {group.items.map(([label, Icon]) => {
                 const active = label === "Employees";
                 return (
                   <div key={label}>
-                    <button onClick={active ? undefined : close} className={`grid w-full grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-lg px-2 py-2 text-left text-sm transition-colors ${active ? "bg-brand-soft text-primary" : "hover:bg-accent"}`}>
-                      <span className={`grid size-8 shrink-0 place-items-center rounded-lg ${active ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}><Icon className="size-4" /></span>
+                    <button onClick={active ? undefined : close} className={`grid w-full grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-lg px-2 py-2.5 text-left text-sm transition-colors ${active ? "bg-brand-soft text-primary" : "hover:bg-accent"}`}>
+                      <span className={`grid size-8 shrink-0 place-items-center rounded-md ${active ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}><Icon className="size-4" /></span>
                       <span className="truncate">{label}</span>
-                      <ChevronDown className={`size-4 ${active ? "" : "-rotate-90"}`} />
+                      {active ? <ChevronDown className="size-4" /> : <ChevronRight className="size-3.5 text-foreground/60" />}
                     </button>
                     {active && (
                       <div className="ml-4 mt-1 space-y-1">
