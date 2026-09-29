@@ -31,6 +31,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
+type Employee = [name: string, role: string, status: string, department: string, type: string, joined: string];
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -45,7 +47,7 @@ export const Route = createFileRoute("/")({
   component: Dashboard,
 });
 
-const employees = [
+const employees: Employee[] = [
   ["Administrator", "Admin Officer", "Active", "NOC", "Full-Time", "Feb 1"],
   ["Ahmed Jamal Ali", "DevOps Engineer", "Active", "NOC", "Temporary", "Dec 24"],
   ["Ahmad Khalid", "Software Tester", "Active", "NOC", "Full-Time", "Feb 28 – Apr 21"],
@@ -158,7 +160,13 @@ function Navigation({ mobile = false, close }: { mobile?: boolean; close?: () =>
 function Dashboard() {
   const [query, setQuery] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
-  const filteredEmployees = useMemo(() => employees.filter((employee) => employee[0].toLowerCase().includes(query.toLowerCase())), [query]);
+  const filteredEmployees = useMemo(() => employees.filter(([name]) => name.toLowerCase().includes(query.toLowerCase())), [query]);
+
+  const stats = [
+    { number: "46", label: "Active", Icon: UsersRound, className: "bg-success text-success-foreground" },
+    { number: "1568", label: "Inactive", Icon: UserCog, className: "bg-warning text-warning-foreground" },
+    { number: "0", label: "Leaving", Icon: LogOut, className: "bg-quiet text-primary" },
+  ];
 
   return (
     <main className="min-h-screen bg-surface font-sans text-foreground">
@@ -196,10 +204,10 @@ function Dashboard() {
           </div>
 
           <div className="grid gap-3 sm:grid-cols-3">
-            {[["46", "Active", UsersRound, "success"], ["1568", "Inactive", UserCog, "warning"], ["0", "Leaving", LogOut, "quiet"]].map(([number, label, Icon, tone]) => (
-              <div key={label as string} className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 shadow-xs">
-                <span className={`grid size-10 shrink-0 place-items-center rounded-lg bg-${tone}`}><Icon className="size-5" /></span>
-                <div><p className="text-2xl font-semibold leading-none">{number as string}</p><p className="mt-1 text-xs text-muted-foreground">{label as string}</p></div>
+            {stats.map(({ number, label, Icon, className }) => (
+              <div key={label} className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 shadow-xs">
+                <span className={`grid size-10 shrink-0 place-items-center rounded-lg ${className}`}><Icon className="size-5" /></span>
+                <div><p className="text-2xl font-semibold leading-none">{number}</p><p className="mt-1 text-xs text-muted-foreground">{label}</p></div>
               </div>
             ))}
           </div>
