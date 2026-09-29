@@ -128,9 +128,9 @@ function Navigation({ mobile = false, close }: { mobile?: boolean; close?: () =>
                 return (
                   <div key={label}>
                     <button onClick={active ? undefined : close} className={`grid w-full grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-lg px-2 py-2.5 text-left text-sm transition-colors ${active ? "bg-brand-soft text-primary" : "hover:bg-accent"}`}>
-                      <span className={`grid size-8 shrink-0 place-items-center rounded-md ${active ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}><Icon className="size-4" /></span>
+                      <span className={`grid size-8 shrink-0 place-items-center rounded-lg ${active ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}><Icon className="size-3.5" /></span>
                       <span className="truncate">{label}</span>
-                      {active ? <ChevronDown className="size-4" /> : <ChevronRight className="size-3.5 text-foreground/60" />}
+                      {active ? <ChevronDown className="size-4" /> : <ChevronRight className="size-4 text-foreground/80" />}
                     </button>
                     {active && (
                       <div className="ml-4 mt-1 space-y-1">
@@ -170,8 +170,8 @@ function Dashboard() {
 
   return (
     <main className="min-h-screen bg-surface font-sans text-foreground">
-      <aside className="fixed inset-y-0 left-0 z-30 hidden w-56 lg:block"><Navigation /></aside>
-      <div className="lg:pl-56">
+      <aside className="fixed inset-y-0 left-0 z-30 hidden w-[272px] lg:block"><Navigation /></aside>
+      <div className="lg:pl-[272px]">
         <header className="sticky top-0 z-20 bg-brand text-primary-foreground shadow-sm">
           <div className="grid h-16 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 px-4 lg:h-14 lg:px-6">
             <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
