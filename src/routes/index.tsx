@@ -100,7 +100,7 @@ const navGroups = [
 function Navigation({ mobile = false, close }: { mobile?: boolean; close?: () => void }) {
   return (
     <div className="flex h-full flex-col bg-background text-foreground">
-      <div className={mobile ? "bg-brand px-4 pb-6 pt-4 text-primary-foreground" : "border-b border-border bg-card p-4"}>
+      <div className={`bg-brand text-primary-foreground ${mobile ? "px-4 pb-6 pt-4" : "border-b border-primary-foreground/15 p-4"}`}>
         <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3">
           <img src={adminAvatar} alt="Ahmed Al-Admin" width={64} height={64} className={mobile ? "h-16 w-16 rounded-full object-cover" : "h-9 w-9 rounded-full object-cover"} />
           <div className="min-w-0">
